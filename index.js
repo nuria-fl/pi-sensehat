@@ -8,16 +8,16 @@ const logstats = (err, data) => {
     //     return;
     // }
 
-    // console.log("Accelleration is: ", JSON.stringify(data.accel, null, "  "));
-    console.log("Gyroscope is: ", JSON.stringify(data.gyro, null, "  "));
-    // console.log("Compass is: ", JSON.stringify(data.compass, null, "  "));
+    console.log("Accelleration is: ", JSON.stringify(data.accel, null, "  "));
+    // console.log("Gyroscope is: ", JSON.stringify(data.gyro, null, "  "));
+    console.log("Compass is: ", JSON.stringify(data.compass, null, "  "));
     // console.log("Fusion data is: ", JSON.stringify(data.fusionPose, null, "  "));
 
     // console.log("Temp is: ", data.temperature);
     // console.log("Pressure is: ", data.pressure);
     // console.log("Humidity is: ", data.humidity);
 
-    // handleLed(data.temperature, data.gyro)
+    handleLed(data.temperature, data.accel)
 }
 
 const handleLed = (temperature, gyro) => {
