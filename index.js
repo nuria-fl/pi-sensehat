@@ -1,19 +1,8 @@
-console.log('here')
-var util = require('util')
 var senseHat  = require('node-sense-hat');
 var imu = senseHat.Imu;
 var IMU = new imu.IMU();
 
-const matrix = senseHat.Leds;
-const x = 3;
-const y = 3;
-const red = [255, 0, 0];
-
-// Set a single pixel
-matrix.setPixel(x, y, red);
-
-
-IMU.getValue((err, data) => {
+const logstats = (err, data) => {
     if (err !== null) {
         console.error("Could not read sensor data: ", err);
         return;
@@ -27,4 +16,20 @@ IMU.getValue((err, data) => {
     console.log("Temp is: ", data.temperature);
     console.log("Pressure is: ", data.pressure);
     console.log("Humidity is: ", data.humidity);
-});
+
+    handleLed(data.temperature, data.gyro)
+}
+
+const handleLed = (temperature, gyro) => {
+    const matrix = senseHat.Leds;
+    const x = 3;
+    const y = 3;
+    const red = [temperature * 5, 0, 0];
+
+    // Set a single pixel
+    matrix.setPixel(x, y, red);
+}
+
+setInterval(() => {
+    IMU.getValue(logstats);
+}, 5000)
