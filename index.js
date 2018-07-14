@@ -7,8 +7,10 @@ var IMU = new imu.IMU();
 const matrix = senseHat.Leds;
 const x = 3;
 const y = 3;
-const off = [0, 0, 0];
-matrix.setPixel(x, y, off);
+const red = [255, 0, 0];
+
+// Set a single pixel
+matrix.setPixel(x, y, red);
 
 
 IMU.getValue((err, data) => {
